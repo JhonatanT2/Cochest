@@ -37,14 +37,20 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     };
 
     const logout = async () => {
-        const response = await fetch('https://api-priv.onrender.com/users/logout', {
-            method: 'POST',
-            credentials: 'include',
-        });
-        if (response.ok) {
-            setUser(null);
-        } else {
-            throw new Error('Logout failed');
+        try {
+            const response = await fetch('https://api-priv.onrender.com/users/logout', {
+                method: 'POST',
+                credentials: 'include',
+            });
+            if (response.ok) {
+                setUser(null);
+                console.log('Logout successful');
+            } else {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Logout failed');
+            }
+        } catch (error) {
+            console.error('Logout error:', error);
         }
     };
     useEffect(() => {
