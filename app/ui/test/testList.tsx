@@ -65,8 +65,8 @@ export default function TestListClient({ tests, type }: TestListClientProps) {
                                     {user && (
                                         <p className={`border-2 rounded-md p-1 ${
                                             getUserScoreForTest(test.id) === null ? 'border-gray-200' :
-                                            getUserScoreForTest(test.id) >= 27 ? 'border-green-400' :
-                                            getUserScoreForTest(test.id) >= 23 ? 'border-yellow-400' : 'border-red-400'
+                                            (getUserScoreForTest(test.id) ?? 0) >= 27 ? 'border-green-400' :
+                                            (getUserScoreForTest(test.id) ?? 0) >= 23 ? 'border-yellow-400' : 'border-red-400'
                                         }`}>
                                         Puntuación: {getUserScoreForTest(test.id) ? `${getUserScoreForTest(test.id)}/30` : 'Sin realizar'}</p>
                                     )}                                               

@@ -45,7 +45,13 @@ export default function UserApprovalStats({ userId, testType }: UserApprovalStat
     }, [userId, testType]);
 
     return (
-        <div className={`p-4 bg-white shadow-md rounded-md border-4 ${averageCorrectAnswers >= 0 && averageCorrectAnswers <= 22 ? 'border-red-500' : averageCorrectAnswers >= 23 && averageCorrectAnswers <= 26 ? 'border-yellow-500' : 'border-green-500'}`}>
+        <div className={`p-4 bg-white shadow-md rounded-md border-4 ${averageCorrectAnswers !== null && (
+            averageCorrectAnswers >= 0 && averageCorrectAnswers <= 22
+              ? 'border-red-500'
+              : averageCorrectAnswers >= 23 && averageCorrectAnswers <= 26
+              ? 'border-yellow-500'
+              : 'border-green-500'
+        )}`}>
             <h1 className="text-2xl font-bold mb-4">Tus Estadísticas de Aprobación</h1>
             {approvalRate !== null && averageCorrectAnswers !== null ?  (
                 <>

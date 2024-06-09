@@ -60,7 +60,7 @@ export default function QuestionListClient({ questions, testId }: QuestionListCl
     if (event.target.checked) {
       handleAnswerSelect(answerIndex);
     } else {
-      handleAnswerSelect(null);
+      handleAnswerSelect(0);
     }
   };
 
