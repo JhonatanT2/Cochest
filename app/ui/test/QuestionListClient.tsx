@@ -33,6 +33,7 @@ export default function QuestionListClient({ questions, testId }: QuestionListCl
   const [showExplanation, setShowExplanation] = useState<boolean[]>(Array(questions.length).fill(false));
   const [testCorrected, setTestCorrected] = useState(false);
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
+  const backPath = usePathname().substring(0,11);
   const { user } = useAuth();
   const router = useRouter();
 
@@ -119,7 +120,7 @@ export default function QuestionListClient({ questions, testId }: QuestionListCl
                   Corregir Test 
                 </button>
               ) : (
-                <Link href={usePathname().substring(0,11)} passHref>
+                <Link href={backPath} passHref>
                 <p className="px-4 py-2 bg-sky-500 text-white rounded">
                   Regresar	
                 </p>
