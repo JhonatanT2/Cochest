@@ -1,6 +1,6 @@
 "use client"
 import React from "react";
-import LoginForm from "./loginForm";
+import LoginForm from "../ui/user/loginForm";
 import { useAuth } from "../ui/context/AuthContext";
 import { lusitana } from "../ui/fonts";
 

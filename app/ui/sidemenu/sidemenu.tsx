@@ -23,7 +23,7 @@ export default function Sidebar() {
       return !user || (link.name !== 'Login' && link.name !== 'Register');
     });
     return (
-      <div className='flex md:h-full md:w-64 max-h-screen flex-col px-3 py-4 md:px-2 backdrop-blur-sm bg-white/30 md:fixed '>
+      <div className='flex md:h-full md:w-64 max-h-screen flex-col px-3 py-4 md:px-2 backdrop-blur-sm bg-white/30 md:fixed'>
         <Link href={'/'} className='mb-2 flex h-20 items-end justify-start rounded-md bg-primary-color p-4 md:h-40 bg-[url("/cochest.png")] bg-no-repeat bg-cover bg-center' >
             {/* <div className={`${lusitana.className} w-32 text-white md:w-40 h-12`}>
                 Coche-TEST

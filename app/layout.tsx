@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "./ui/sidemenu/sidemenu";
 import { AuthProvider } from "./ui/context/AuthContext";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,13 +20,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>
+        <link rel="icon" href="/drive.ico" />
+      </head>
       <body className={`${inter.className} antialiased`}>
+      
       <AuthProvider>
         <div className="flex h-auto flex-col md:flex-row md:overflow-hidden bg-gray-200">
-          <div className="w-auto flex-none sticky top-0 z-50 md:w-64 md:h-screen">
+          <div className="sticky -top-24 w-auto flex-none z-50 md:w-64 md:h-screen">
             <Sidebar/>
           </div>
-          <div className="flex-grow  md:overflow-y-auto md:px-0 md:py-0">{children}</div>
+          <div className="sticky top-0 flex-grow  md:overflow-y-auto md:px-0 md:py-0">{children}</div>
         </div>
         </AuthProvider>
       </body>
