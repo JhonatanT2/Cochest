@@ -41,9 +41,9 @@ const QuestionDetails: React.FC<QuestionDetailsProps> = ({
       <h2 className="text-lg font-semibold">Pregunta {currentQuestionIndex + 1}</h2>
       <p className="mb-2">{currentQuestion.enunciado}</p>
 
-      <div className='md:flex'>
+      <div className='md:flex justify-between'>
         {currentQuestion.img && (
-          <div className="relative w-full h-64 max-w-[300px] mx-auto md:order-last">
+          <div className="relative w-full h-64 max-w-[300px]  md:order-last">
             <Image
               src={`https://api-priv.onrender.com${currentQuestion.img}`}
               alt="Imagen de la pregunta"

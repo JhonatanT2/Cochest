@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { updateScore } from '../context/testResult';
 import { useAuth } from '../context/AuthContext';
@@ -7,6 +7,8 @@ import { AutoRedirectToLogin } from '../redirect/redirection';
 import Results from './Results';
 import QuestionDetails from './QuestionDetails';
 import QuestionNavigation from './QuestionNavigation';
+import fetchQuestions from './Questionfetch';
+import { QuestionLoader } from '../skeleton/question';
 // Definicion de tipo para las preguntas
 interface Respuesta {
   id: number;
@@ -22,18 +24,37 @@ interface Question {
 }
 // Propiedades del componente QuestionListClient
 interface QuestionListClientProps {
-  questions: Question[];
+  //questions: Question[];
   testId: string;
 }
-export default function QuestionListClient({ questions, testId }: QuestionListClientProps) {
+
+export default function QuestionListClient({  testId }: QuestionListClientProps) {
+
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedAnswers, setSelectedAnswers] = useState<(number | null)[]>(Array(questions.length).fill(null));
+  const [selectedAnswers, setSelectedAnswers] = useState<(number | null)[]>([]);
   const [showResults, setShowResults] = useState(false);
-  const [showExplanation, setShowExplanation] = useState<boolean[]>(Array(questions.length).fill(false));
+  const [showExplanation, setShowExplanation] = useState<boolean[]>([]);
   const [testCorrected, setTestCorrected] = useState(false);
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
   const backPath = usePathname().substring(0, 11);
   const { user } = useAuth();
+
+  useEffect(() => {
+    async function loadQuestions() {
+      try {
+        const questions = await fetchQuestions(testId);
+        setQuestions(questions);
+        setSelectedAnswers(Array(questions.length).fill(null));
+        setShowExplanation(Array(questions.length).fill(false));
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching questions:', error);
+      }
+    }
+    loadQuestions();
+  }, [testId]);
   // Funciones para el manejo de paginacion
   const handleNextQuestion = () => {
     setCurrentQuestionIndex((prevIndex) => Math.min(prevIndex + 1, questions.length - 1));
@@ -80,9 +101,16 @@ export default function QuestionListClient({ questions, testId }: QuestionListCl
     newShowExplanation[index] = !newShowExplanation[index];
     setShowExplanation(newShowExplanation);
   };
-  if (!questions || questions.length === 0) {
-    return <div>No hay preguntas disponibles.</div>;
+  if (isLoading) {
+    return(
+      <div>
+        <QuestionLoader/>
+      </div>
+    ) 
   }
+  // if (!questions || questions.length === 0) {
+  //   return <div>No hay preguntas disponibles.</div>;
+  // }
   return (
     <div>
       {user || testId === "a3dc7368-20fe-4adf-8085-ce8831e718f1" ? (

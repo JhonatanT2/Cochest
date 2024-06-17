@@ -1,6 +1,4 @@
-// app/examenes/[tipo]/[id]/page.tsx
 import QuestionListClient from '@/app/ui/test/QuestionListClient';
-import fetchQuestions from '@/app/ui/test/Questionfetch';
 import ErrorRedirect from '@/app/ui/redirect/errorExamans';
 // Definición de tipos para los parámetros
 interface TestPageProps {
@@ -8,16 +6,18 @@ interface TestPageProps {
     id: string;
   };
 }
-
-export default async function TestPage({ params }: TestPageProps) {
-  try {
-    const questions = await fetchQuestions(params.id);
-    return (
+export default function TestPage({ params }: TestPageProps) {
+  return (
     <div className='min-h-screen'>
-      <QuestionListClient questions={questions} testId={params.id} />
+        <QuestionListClientWrapper testId={params.id} />
     </div>
   );
+}
+
+function QuestionListClientWrapper({ testId }: { testId: string }) {
+  try {
+    return <QuestionListClient testId={testId} />;
   } catch (error) {
-    return <ErrorRedirect />; 
-  }  
+    return <ErrorRedirect />;
+  }
 }

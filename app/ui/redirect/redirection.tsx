@@ -8,5 +8,5 @@ export function AutoRedirectToLogin() {
       router.push('/login');
     }, [router]);
   
-    return null; // Renderiza nada mientras se espera la redirección
+    return null;
 }

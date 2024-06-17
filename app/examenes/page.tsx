@@ -10,7 +10,7 @@ export default function Test() {
                     tipo="B" 
                 />
                 <div className="md:ml-5 border-4 bg-primary-color rounded-xl h-36 flex items-center p-6 text-white transform w-80 hover:bg-blue-800 transition duration-500 hover:scale-125 justify-center">
-                    <p className="">Pronto añadiremos mas Tests!!</p>
+                    <p className="">Pronto añadiremos Tests de más tipos!!</p>
                 </div>
             </div>
         </div>

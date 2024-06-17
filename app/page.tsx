@@ -69,7 +69,7 @@ export default function Home() {
                   En Cochest dispones de una selección de preguntas más frecuentes que han caído en los exámenes de la DGT, las cuales puedes repasar con nuestros test.
                 </p>
                 <p className="max-w-[600px] text-[#003366] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-[#003366]">
-                  Además, cuentas con sistemas de recopilación de tus resultados, para seguir tu progreso con cada test que haces tu progreso.
+                  Además, cuentas con sistemas de recopilación de tus resultados, para seguir tu progreso con cada test que haces.
                 </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">

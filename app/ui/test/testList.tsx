@@ -38,8 +38,8 @@ export default function TestListClient({ tests, type }: TestListClientProps) {
     };
     
     return (
-        <div>
-            <div className="p-6 bg-white shadow-md rounded-md md:flex md:justify-around">
+        <div className="">
+            <div className=" p-6 bg-gray-200 shadow-md rounded-md md:flex md:justify-around">
                 <section className="order-1 flex md:mt-60 mb-8">
                     <div>
                         { user ? (
@@ -49,7 +49,7 @@ export default function TestListClient({ tests, type }: TestListClientProps) {
                         )}
                     </div>
                 </section>
-                <div className="md:w-1/3 min-w-64 w-auto border-2 border-primary-color p-6 rounded-lg">
+                <div className="md:w-2/5 min-w-64 w-auto border-2 border-primary-color p-6 rounded-lg">
                     <h1 className="text-2xl font-bold mb-4">Tests de tipo {type}</h1>
                     { user ? (
                             <></>
